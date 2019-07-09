@@ -2,5 +2,5 @@
     "JWT_KEY": "MySecret!123", 
     "MONGO_URI": "mongodb://localhost:27017/tododb",
     "PORT": "3000", 
-    "HOST": "localhost" 
+    "HOST": "hostapp.dev" 
 }

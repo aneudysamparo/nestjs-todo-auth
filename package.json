@@ -5,12 +5,13 @@
   "author": "Aneudys Amparo",
   "license": "MIT",
   "scripts": {
-    "format": "prettier --write \"**/*.ts\"",
+    "build": "tsc -p tsconfig.build.json",
+    "format": "prettier --write \"src/**/*.ts\"",
     "start": "ts-node -r tsconfig-paths/register src/main.ts",
-    "start:dev": "nodemon",
-    "prestart:prod": "rm -rf dist && tsc -p ./tsconfig.json",
+    "start:dev": "concurrently --handle-input \"wait-on dist/main.js && nodemon\" \"tsc -w -p tsconfig.build.json\" ",
+    "start:debug": "nodemon --config nodemon-debug.json",
+    "prestart:prod": "rimraf dist && npm run build",
     "start:prod": "node dist/main.js",
-    "start:hmr": "node dist/server",
     "test": "jest",
     "test:cov": "jest --coverage",
     "test:e2e": "jest --config ./test/jest-e2e.json",
@@ -30,6 +31,7 @@
     "config": "^3.1.0",
     "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.11",
+    "module-alias": "^2.2.0",
     "mongoose": "^5.6.4",
     "passport": "^0.4.0",
     "passport-jwt": "^4.0.0",
@@ -81,5 +83,8 @@
       "^.+\\.(t|j)s$": "ts-jest"
     },
     "coverageDirectory": "../coverage"
+  },
+  "_moduleAliases": {
+    "~": "./dist"
   }
 }

@@ -5,6 +5,7 @@ import { ConfigurationService } from './shared/configuration/configuration.servi
 import { SharedModule } from './shared/shared.module';
 import { TodoModule } from './todo/todo.module';
 import { UserModule } from './user/user.module';
+import { SiteModule } from './site/site.module';
 
 @Module({
     imports: [SharedModule, MongooseModule.forRootAsync({
@@ -17,7 +18,7 @@ import { UserModule } from './user/user.module';
             useCreateIndex: true,
         }),
         inject: [ConfigurationService],
-    }), UserModule, TodoModule],
+    }), UserModule, TodoModule, SiteModule],
 })
 export class AppModule {
     static host: string;
@@ -35,4 +36,5 @@ export class AppModule {
         if (isNaN(portNumber)) return param;
         else if (portNumber >= 0) return portNumber;
     }
+
 }
