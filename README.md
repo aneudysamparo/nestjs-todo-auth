@@ -37,3 +37,6 @@ $ npm run test:e2e
 $ npm run test:cov
 ```
 
+#Implementation
+based on this https://stackoverflow.com/questions/22588253/dynamic-database-connection-to-mongodb-or-mongoose-from-nodejs
+
