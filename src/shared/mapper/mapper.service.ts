@@ -21,5 +21,9 @@ export class MapperService {
             .forSourceMember('password', opts => opts.ignore());
 
         config.createMap('Todo', 'TodoVm').forSourceMember('_id', opts => opts.ignore());
+        config
+            .createMap('Site', 'SiteVm')
+            .forSourceMember('_id', opts => opts.ignore())
+            .forSourceMember('password', opts => opts.ignore());
     }
 }

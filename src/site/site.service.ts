@@ -4,7 +4,7 @@ import { ModelType } from 'typegoose';
 import { BaseService } from '../shared/base.service';
 import { MapperService } from '../shared/mapper/mapper.service';
 import { Site } from './models/site.model';
-import { SiteDto } from './models/dto/site-dto.model';
+import { CreateSiteDto } from './models/dto/create-site-dto.model';
 
 @Injectable()
 export class SiteService extends BaseService<Site> {
@@ -18,11 +18,10 @@ export class SiteService extends BaseService<Site> {
         this._mapper = _mapperService.mapper;
     }
 
-    async createSite(params: SiteDto): Promise<Site> {
+    async createSite(params: CreateSiteDto): Promise<Site> {
         const { username, password, siteName } = params;
 
         const newItem = Site.createModel();
-
         newItem.username = username;
         newItem.password = password;
         newItem.siteName = siteName;

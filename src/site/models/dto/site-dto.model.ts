@@ -1,13 +1,7 @@
 import { ApiModelProperty } from '@nestjs/swagger';
+import { BaseModelDto } from '../../../shared/base.model';
 
-export class SiteDto {
-    @ApiModelProperty({ required: true, minLength: 6 })
-    username: string;
-
-    @ApiModelProperty({ required: true, minLength: 6, type: String, format: 'password' })
-    password: string;
-
-    @ApiModelProperty({ required: true, minLength: 4 })
-    siteName: string;
-
+export class SiteDto extends BaseModelDto {
+    @ApiModelProperty() username: string;
+    @ApiModelProperty() siteName: string;
 }

@@ -10,13 +10,13 @@ export class Site extends BaseModel<Site> {
     
     @prop({
         required: [true, 'Username is required'],
-        unique: true,
         minlength: [6, 'Must be at least 6 characters'],
     })
     username: string;
 
     @prop({
         required: [true, 'Password is required'],
+        unique: true,
         minlength: [6, 'Must be at least 6 characters'],
     })
     password: string;
