@@ -8,6 +8,9 @@ export class CreateSiteDto {
     password: string;
 
     @ApiModelProperty({ required: true, minLength: 4 })
-    siteName: string;
+    sitename: string;
+
+    @ApiModelProperty({ required: true, minLength: 2 })
+    domainname: string;
 
 }

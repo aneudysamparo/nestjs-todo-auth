@@ -6,7 +6,13 @@ export class Site extends BaseModel<Site> {
         required: [true, 'Site Name is required'],
         minlength: [4, 'Must be at least 4 characters'],
     })
-    siteName: string;
+    sitename: string;
+
+    @prop({
+        required: [true, 'Domain Name is required'],
+        minlength: [2, 'Must be at least 2 characters'],
+    })
+    domainname: string;
     
     @prop({
         required: [true, 'Username is required'],

@@ -4,4 +4,5 @@ import { BaseModelDto } from '../../../shared/base.model';
 export class SiteDto extends BaseModelDto {
     @ApiModelProperty() username: string;
     @ApiModelProperty() siteName: string;
+    @ApiModelProperty() domainname: string;
 }
