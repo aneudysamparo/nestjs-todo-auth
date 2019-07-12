@@ -3,11 +3,14 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { HttpExceptionFilter } from './shared/filters/http-exception.filter';
+import { DatabaseMiddleware } from './shared/middlewares/database.middleware';
 
 declare const module: any;
 
 async function bootstrap() {
     const app = await NestFactory.create(AppModule);
+    new DatabaseMiddleware(app);
+    
     const hostDomain = AppModule.isDev ? `${AppModule.host}:${AppModule.port}` : AppModule.host;
 
     const swaggerOptions = new DocumentBuilder()
@@ -37,9 +40,12 @@ async function bootstrap() {
         module.hot.dispose(() => app.close());
     }
 
+    app.use(DatabaseMiddleware.interceptor);
+
     app.setGlobalPrefix('api');
     app.useGlobalFilters(new HttpExceptionFilter());
     await app.listen(AppModule.port);
 }
 
 bootstrap();
+

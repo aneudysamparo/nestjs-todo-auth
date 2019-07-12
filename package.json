@@ -53,7 +53,7 @@
     "@types/jest": "^24.0.15",
     "@types/jsonwebtoken": "^8.3.2",
     "@types/lodash": "^4.14.136",
-    "@types/mongoose": "^5.3.22",
+    "@types/mongoose": "^5.5.8",
     "@types/node": "^10.14.12",
     "@types/passport": "^0.4.7",
     "@types/passport-jwt": "^3.0.1",
