@@ -11,6 +11,7 @@ import { LoginResponseDto } from './models/dto/login-response-dto.model';
 import { LoginDto } from './models/dto/login-dto.model';
 import { RegisterDto } from './models/dto/register-dto.model';
 import { UserDto } from './models/dto/user-dto.model';
+import { EmailService } from '../@infrastructure/email/email.service';
 
 @Injectable()
 export class UserService extends BaseService<User> {
@@ -19,6 +20,7 @@ export class UserService extends BaseService<User> {
         private readonly _mapperService: MapperService,
         @Inject(forwardRef(() => AuthService))
         readonly _authService: AuthService,
+        @Inject(forwardRef(() => EmailService)) readonly _emailService: EmailService
     ) {
         super();
         this._model = _userModel;
@@ -67,6 +69,7 @@ export class UserService extends BaseService<User> {
         const token = await this._authService.signPayload(payload);
         const userVm: UserDto = await this.map<UserDto>(user.toJSON());
 
+        this._emailService.generateMail();
         return {
             token,
             user: userVm,

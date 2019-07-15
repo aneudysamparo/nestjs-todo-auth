@@ -17,17 +17,7 @@ export class DatabaseMiddleware  {
   static interceptor = function (req: Request, res: Response, next: Function) {
     
     let mongo = applicationInstance.get(MongooseModule);
-    mongo.forRootAsync({
-      imports: [SharedModule],
-      useFactory: async (_configService: ConfigurationService) => ({
-          uri:  _configService.get(Configuration.MONGO_URI),
-          retryDelay: 500,
-          retryAttempts: 3,
-          useNewUrlParser: true,
-          useCreateIndex: true,
-      }),
-      inject: [ConfigurationService],
-  });
+    
     console.log('Request...');
     console.log(`Getting Request.....`);
     console.log(req.hostname);

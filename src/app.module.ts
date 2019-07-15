@@ -2,13 +2,14 @@ import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { Configuration } from './shared/configuration/configuration.enum';
 import { ConfigurationService } from './shared/configuration/configuration.service';
+import { InfrastructureModule } from './@infrastructure/infrastructure.module';
 import { SharedModule } from './shared/shared.module';
 import { TodoModule } from './todo/todo.module';
 import { UserModule } from './user/user.module';
 import { SiteModule } from './site/site.module';
 
 @Module({
-    imports: [SharedModule, MongooseModule.forRootAsync({
+    imports: [SharedModule, InfrastructureModule, MongooseModule.forRootAsync({
         imports: [SharedModule],
         useFactory: async (_configService: ConfigurationService) => ({
             uri:  _configService.get(Configuration.MONGO_URI),
